@@ -1,1 +1,1 @@
-# udacity-c-plus-plus
+# Udacity - C++ Nanodegree
