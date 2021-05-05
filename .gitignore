@@ -37,7 +37,7 @@
 # Project 1
 1_route_planner/build/
 1_route_planner/lib/
-1_route_planner/thirdparty/clang/*
-1_route_planner/thirdparty/P0267_RefImpl/*
+1_route_planner/thirdparty/clang
+1_route_planner/thirdparty/P0267_RefImpl
 1_route_planner/submission.zip
 1_route_planner/submit.sh
