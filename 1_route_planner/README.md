@@ -1,7 +1,5 @@
 # Route Planning Project
 
-This repo contains the starter code for the Route Planning project.
-
 <center>
 <img src="map.png" width="500" />
 </center>
@@ -9,6 +7,11 @@ This repo contains the starter code for the Route Planning project.
 ### My Contribution
 * `src/main.cpp` (partial)
 * `src/route_planner.cpp`
+
+## My Sample Output
+![sample output](./media/my_sample_output.png)
+
+![sample output 2](./media/my_sample_output_2.png)
 
 ## Cloning
 
@@ -67,8 +70,3 @@ The testing executable is also placed in the `build` directory. From within `bui
 
 ## Code Structure
 ![code structure](./media/code-structure.png)
-
-## My Sample Output
-![sample output](./media/my_sample_output.png)
-
-![sample output 2](./media/my_sample_output_2.png)

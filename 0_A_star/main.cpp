@@ -85,7 +85,7 @@ bool CheckValidCell(int x, int y, vector<vector<State>> &grid) {
 
 
 /** 
- * Add a node to the open list and mark it as open. 
+ * Add a node to the open list and mark it as closed. 
  */
 void AddToOpen(int x, int y, int g, int h, vector<vector<int>> &openlist, vector<vector<State>> &grid) {
     // Add node to open vector, and mark grid cell as closed.
