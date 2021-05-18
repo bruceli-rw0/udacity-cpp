@@ -38,13 +38,12 @@ submit.sh
 submission.zip
 exercise/
 
+*/build
+
 # Project 1
-1_route_planner/build/
 1_route_planner/lib/
 1_route_planner/thirdparty/clang
 1_route_planner/thirdparty/P0267_RefImpl
 
 # Project 2
-2_process_monitor/build
-
 # Project 3
