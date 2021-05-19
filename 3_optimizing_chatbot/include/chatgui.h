@@ -3,8 +3,7 @@
 
 #include <wx/wx.h>
 #include <memory>
-using std::shared_ptr;
-using std::weak_ptr;
+using std::unique_ptr;
 
 class ChatLogic; // forward declaration
 
@@ -19,8 +18,7 @@ private:
     //// STUDENT CODE
     ////
 
-    // ChatLogic *_chatLogic;
-    shared_ptr<ChatLogic> _chatLogic;
+    unique_ptr<ChatLogic> _chatLogic;
 
     ////
     //// EOF STUDENT CODE
@@ -31,8 +29,7 @@ public:
     ~ChatBotPanelDialog();
 
     // getter / setter
-    // ChatLogic* GetChatLogicHandle() { return _chatLogic; }
-    shared_ptr<ChatLogic> GetChatLogicHandle() { return _chatLogic; }
+    std::reference_wrapper<unique_ptr<ChatLogic>> GetChatLogicHandle() { return this->_chatLogic; }
 
     // events
     void paintEvent(wxPaintEvent &evt);
@@ -40,7 +37,7 @@ public:
     void render(wxDC &dc);
 
     // proprietary functions
-    void AddDialogItem(wxString text, bool isFromUser = true);
+    void AddDialogItem(wxString text, bool isFromUser=true);
     void PrintChatbotResponse(std::string response);
 
     DECLARE_EVENT_TABLE()

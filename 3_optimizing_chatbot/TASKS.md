@@ -11,6 +11,21 @@ In this project you will analyze and modify the program. Although the program ca
 Your goal is to use the course knowledge to optimize the ChatBot program from a memory management perspective. There are a total of five specific tasks to be completed, which are detailed below.
 
 ## Project Schematics
+```cpp
+ChatBotApp::OnInit() ->
+ChatBotFrame::ChatBotFrame() ->
+ChatBotPanelDialog::ChatBotPanelDialog() -> //constructor
+// repeat
+ChatBotFrame::OnEnter() ->
+    SendMessageToChatBot() ->
+ChatBot::ReceiveMessageFromUser() ->
+    GraphNode::MoveChatBotToNewNode() ->
+        GraphNode::MoveChatBotHere() ->
+ChatBot::SetCurrentNode() ->
+    SendMessageToUser() ->
+        PrintChatbotResponse() ->
+            AddDialogItem()
+```
 ![schematic](./images/schematic-1.png)
 ![schematic](./images/schematic-2.png)
 

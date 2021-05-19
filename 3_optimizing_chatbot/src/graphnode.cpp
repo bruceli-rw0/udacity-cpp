@@ -3,49 +3,34 @@
 
 GraphNode::GraphNode(int id): _id(id) {}
 
-GraphNode::~GraphNode()
-{
-    //// STUDENT CODE
-    ////
-
-    // delete _chatBot;
-
-    ////
-    //// EOF STUDENT CODE
-}
+GraphNode::~GraphNode() {}
 
 void GraphNode::AddToken(std::string token)
 {
     this->_answers.emplace_back(token);
 }
 
-void GraphNode::AddEdgeToParentNode(GraphEdge *edge)
+void GraphNode::AddEdgeToChildNode(unique_ptr<GraphEdge> edge)
 {
-    this->_parentEdges.emplace_back(edge);
-}
-
-void GraphNode::AddEdgeToChildNode(GraphEdge *edge)
-{
-    this->_childEdges.emplace_back(edge);
+    this->_childEdges.emplace_back(std::move(edge));
 }
 
 //// STUDENT CODE
 ////
-void GraphNode::MoveChatbotHere(ChatBot *chatbot)
+void GraphNode::MoveChatbotHere(ChatBot chatbot)
 {
-    _chatBot = chatbot;
-    _chatBot->SetCurrentNode(this);
+    this->_chatBot = std::move(chatbot);
+    this->_chatBot.SetCurrentNode(shared_from_this());
 }
 
-void GraphNode::MoveChatbotToNewNode(GraphNode *newNode)
+void GraphNode::MoveChatbotToNewNode(shared_ptr<GraphNode> newNode)
 {
-    newNode->MoveChatbotHere(_chatBot); // move chatbot to newNode
-    this->_chatBot = nullptr; // invalidate pointer at source
+    newNode->MoveChatbotHere(std::move(this->_chatBot)); // move chatbot to newNode
 }
 ////
 //// EOF STUDENT CODE
 
-GraphEdge* GraphNode::GetChildEdgeAtIndex(int index)
+reference_wrapper<const unique_ptr<GraphEdge>> GraphNode::GetChildEdgeAtIndex(int index)
 {
     //// STUDENT CODE
     ////

@@ -1,5 +1,12 @@
 # Optimizing Memory Management Chatbot
 
+### Contribution
+* `src/chatgui.cpp`
+* `src/graphedge.cpp`
+* `src/chatbot.cpp`
+* `src/chatlogic.cpp`
+* `src/graphnode.cpp`
+
 ## Project Introduction Summary
 **Purpose:** In this project, you will analyze and modify an existing ChatBot program, which is able to discuss some memory management topics based on the content of a knowledge base. The program can be executed and works as intended. However, no advanced concepts as discussed in this course have been used. There are no smart pointers, no move semantics and not much thought has been given on ownership and on memory allocation.
 
@@ -24,6 +31,3 @@
 2. Build the project: `make build`
 3. Compile: `make`
 4. Run it: `./membot`
-
-
-`sudo apt-get install libwxgtk3.0-0v5`

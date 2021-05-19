@@ -3,17 +3,12 @@
 
 GraphEdge::GraphEdge(int id): _id(id) {}
 
-void GraphEdge::SetChildNode(GraphNode *childNode)
+void GraphEdge::SetChildNode(shared_ptr<GraphNode> childNode)
 {
-    _childNode = childNode;
+    this->_childNode = childNode;
 }
 
-void GraphEdge::SetParentNode(GraphNode *parentNode)
+void GraphEdge::AddToken(string token)
 {
-    _parentNode = parentNode;
-}
-
-void GraphEdge::AddToken(std::string token)
-{
-    _keywords.emplace_back(token);
+    this->_keywords.emplace_back(token);
 }

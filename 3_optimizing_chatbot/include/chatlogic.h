@@ -3,12 +3,17 @@
 
 #include <vector>
 #include <string>
+#include <memory>
 #include "chatgui.h"
+#include "chatbot.h"
+
 using std::vector;
 using std::string;
+using std::shared_ptr;
+using std::unique_ptr;
 
 // forward declarations
-class ChatBot;
+// class ChatBot;
 class GraphEdge;
 class GraphNode;
 
@@ -19,15 +24,13 @@ private:
     ////
 
     // data handles (owned)
-    vector<GraphNode *> _nodes;
-    vector<GraphEdge *> _edges;
+    vector<shared_ptr<GraphNode>> _nodes;
 
     ////
     //// EOF STUDENT CODE
 
     // data handles (not owned)
-    GraphNode *_currentNode;
-    ChatBot *_chatBot;
+    ChatBot* _chatBot;
     ChatBotPanelDialog *_panelDialog;
 
     // proprietary type definitions
