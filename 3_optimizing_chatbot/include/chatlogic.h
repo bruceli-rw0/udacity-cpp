@@ -6,28 +6,19 @@
 #include <memory>
 #include "chatgui.h"
 #include "chatbot.h"
-
 using std::vector;
 using std::string;
-using std::shared_ptr;
 using std::unique_ptr;
 
 // forward declarations
-// class ChatBot;
+class ChatBot;
 class GraphEdge;
 class GraphNode;
-
 class ChatLogic
 {
 private:
-    //// STUDENT CODE
-    ////
-
     // data handles (owned)
-    vector<shared_ptr<GraphNode>> _nodes;
-
-    ////
-    //// EOF STUDENT CODE
+    vector<unique_ptr<GraphNode>> _nodes;
 
     // data handles (not owned)
     ChatBot* _chatBot;
@@ -42,8 +33,8 @@ private:
 
 public:
     // constructor / destructor
-    ChatLogic();
-    ~ChatLogic();
+    ChatLogic() {};
+    ~ChatLogic() {};
 
     // getter / setter
     void SetPanelDialogHandle(ChatBotPanelDialog *panelDialog);

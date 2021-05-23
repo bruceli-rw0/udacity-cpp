@@ -3,6 +3,8 @@
 
 #include <wx/wx.h>
 #include <memory>
+#include "graphnode.h"
+#include "graphedge.h"
 using std::unique_ptr;
 
 class ChatLogic; // forward declaration
@@ -15,13 +17,7 @@ private:
     wxBoxSizer *_dialogSizer;
     wxBitmap _image;
 
-    //// STUDENT CODE
-    ////
-
     unique_ptr<ChatLogic> _chatLogic;
-
-    ////
-    //// EOF STUDENT CODE
 
 public:
     // constructor / destructor

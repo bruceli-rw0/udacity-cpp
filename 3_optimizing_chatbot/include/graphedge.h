@@ -6,7 +6,6 @@
 #include <memory>
 using std::string;
 using std::vector;
-using std::shared_ptr;
 
 class GraphNode; // forward declaration
 
@@ -14,7 +13,8 @@ class GraphEdge
 {
 private:
     // data handles (not owned)
-    shared_ptr<GraphNode> _childNode;
+    GraphNode *_childNode;
+    GraphNode *_parentNode;
 
     // proprietary members
     int _id;
@@ -27,8 +27,9 @@ public:
 
     // getter / setter
     int GetID() { return _id; }
-    void SetChildNode(shared_ptr<GraphNode> childNode);
-    shared_ptr<GraphNode> GetChildNode() { return this->_childNode; }
+    void SetChildNode(GraphNode *childNode);
+    void SetParentNode(GraphNode *parentNode);
+    GraphNode* GetChildNode() { return this->_childNode; }
     vector<string> GetKeywords() { return this->_keywords; }
 
     // proprietary functions

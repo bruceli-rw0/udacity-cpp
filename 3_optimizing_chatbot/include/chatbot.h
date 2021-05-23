@@ -17,8 +17,8 @@ private:
     wxBitmap *_image; // avatar image
 
     // data handles (not owned)
-    shared_ptr<GraphNode> _currentNode;
-    shared_ptr<GraphNode> _rootNode;
+    GraphNode *_currentNode;
+    GraphNode *_rootNode;
     ChatLogic *_chatLogic;
 
     // proprietary functions
@@ -26,22 +26,19 @@ private:
 
 public:
     // constructors / destructors
-    ChatBot();                     // constructor WITHOUT memory allocation
+    ChatBot();                // constructor WITHOUT memory allocation
     ChatBot(string filename); // constructor WITH memory allocation
     ~ChatBot();
 
-    //// STUDENT CODE
-    ////
-
+    // rule of five
+    ChatBot(ChatBot &source); // copy constructor
+    ChatBot& operator=(ChatBot &source); // copy assignment operator
     ChatBot(ChatBot &&source); // move constructor
     ChatBot& operator=(ChatBot &&source); // move assignment operator
 
-    ////
-    //// EOF STUDENT CODE
-
     // getters / setters
-    void SetCurrentNode(shared_ptr<GraphNode> node);
-    void SetRootNode(shared_ptr<GraphNode> rootNode) { this->_rootNode = rootNode; }
+    void SetCurrentNode(GraphNode *node);
+    void SetRootNode(GraphNode *rootNode) { this->_rootNode = rootNode; }
     void SetChatLogicHandle(ChatLogic *chatLogic) { this->_chatLogic = chatLogic; }
     ChatLogic* GetChatLogicHandle() { return _chatLogic; }
     wxBitmap* GetImageHandle() { return _image; }

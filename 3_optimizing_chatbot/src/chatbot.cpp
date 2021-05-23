@@ -7,30 +7,28 @@
 #include "graphnode.h"
 #include "graphedge.h"
 #include "chatbot.h"
-
 using std::vector;
-using std::shared_ptr;
 
 // constructor WITHOUT memory allocation
 ChatBot::ChatBot()
 {
     // invalidate data handles
-    _image = nullptr;
-    _chatLogic = nullptr;
-    _rootNode = nullptr;
+    this->_image = nullptr;
+    this->_chatLogic = nullptr;
+    this->_rootNode = nullptr;
 }
 
 // constructor WITH memory allocation
 ChatBot::ChatBot(string filename)
 {
     std::cout << "ChatBot Constructor" << std::endl;
-    
+
     // invalidate data handles
-    _chatLogic = nullptr;
-    _rootNode = nullptr;
+    this->_chatLogic = nullptr;
+    this->_rootNode = nullptr;
 
     // load image into heap memory
-    _image = new wxBitmap(filename, wxBITMAP_TYPE_PNG);
+    this->_image = new wxBitmap(filename, wxBITMAP_TYPE_PNG);
 }
 
 ChatBot::~ChatBot()
@@ -45,8 +43,29 @@ ChatBot::~ChatBot()
     }
 }
 
-//// STUDENT CODE
-////
+ChatBot::ChatBot(ChatBot &source) 
+{
+    std::cout << "ChatBot Copy Constructor" << std::endl;
+
+    this->_image = new wxBitmap();
+    *(this->_image) = *(source._image);
+    this->_chatLogic = source._chatLogic;
+    this->_rootNode = source._rootNode;
+}
+
+ChatBot& ChatBot::operator=(ChatBot &source) 
+{
+    std::cout << "ChatBot Copy Assignment Operator" << std::endl;
+
+    if (this == &source) return *this;
+
+    this->_image = new wxBitmap();
+    *(this->_image) = *(source._image);
+    this->_chatLogic = source._chatLogic;
+    this->_rootNode = source._rootNode;
+
+    return *this;
+}
 
 ChatBot::ChatBot(ChatBot &&source) 
 {
@@ -86,31 +105,28 @@ ChatBot& ChatBot::operator=(ChatBot &&source)
     return *this;
 }
 
-////
-//// EOF STUDENT CODE
-
 void ChatBot::ReceiveMessageFromUser(string message)
 {
     // loop over all edges and keywords and compute Levenshtein distance to query
-    typedef std::pair<std::reference_wrapper<const unique_ptr<GraphEdge>>, int> EdgeDist;
+    typedef std::pair<GraphEdge*, int> EdgeDist;
     vector<EdgeDist> levDists; // format is <ptr,levDist>
 
     for (size_t i = 0; i < this->_currentNode->GetNumberOfChildEdges(); ++i)
     {
         auto edge = this->_currentNode->GetChildEdgeAtIndex(i);
-        for (auto keyword : edge.get()->GetKeywords())
+        for (auto keyword : edge->GetKeywords())
         {
-            levDists.emplace_back(std::make_pair(std::cref(edge), ComputeLevenshteinDistance(keyword, message)));
+            levDists.emplace_back(std::make_pair(edge, ComputeLevenshteinDistance(keyword, message)));
         }
     }
 
     // select best fitting edge to proceed along
-    shared_ptr<GraphNode> newNode;
+    GraphNode *newNode;
     if (levDists.size() > 0)
     {
         // sort in ascending order of Levenshtein distance (best fit is at the top)
         std::sort(levDists.begin(), levDists.end(), [](const EdgeDist &a, const EdgeDist &b) { return a.second < b.second; });
-        newNode = levDists.at(0).first.get()->GetChildNode(); // after sorting the best edge is at first position
+        newNode = levDists.at(0).first->GetChildNode(); // after sorting the best edge is at first position
     } 
     else
     {
@@ -122,7 +138,7 @@ void ChatBot::ReceiveMessageFromUser(string message)
     _currentNode->MoveChatbotToNewNode(newNode);
 }
 
-void ChatBot::SetCurrentNode(shared_ptr<GraphNode> node)
+void ChatBot::SetCurrentNode(GraphNode* node)
 {
     // update pointer to current node
     this->_currentNode = node;
