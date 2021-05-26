@@ -38,6 +38,7 @@ submit.sh
 submission.zip
 exercise/
 
+# Projects
 */build
 
 # Project 1
@@ -47,3 +48,6 @@ exercise/
 
 # Project 2
 # Project 3
+# Project 4
+4_concurrent_traffic_simulation/lessons
+4_concurrent_traffic_simulation/TASKS.md

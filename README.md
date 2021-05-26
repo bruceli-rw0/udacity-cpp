@@ -1,7 +1,7 @@
 # Udacity - C++ Nanodegree
 
 ## Project
-1. `A* Search`
+0. `A* Search`
     - Implementing A* search algorithm
     - Contribution:
       - `0_A_star/main.cpp`
@@ -25,3 +25,10 @@
         -  `3_optimizing_chatbot/src/chatlogic.cpp`
         -  `3_optimizing_chatbot/src/graphnode.cpp`
         -  `3_optimizing_chatbot/src/graphedge.cpp`
+1. `Concurrent Traffic Simulation`
+    - Building a suitable and thread-safe communication protocol between vehicles, intersections, and traffic light to run a traffic simulation.
+    - Contribution
+        - `4_concurrent_traffic_simulation/src/TrafficObject.cpp`
+        - `4_concurrent_traffic_simulation/src/Vehicle.cpp`
+        - `4_concurrent_traffic_simulation/src/Intersection.cpp`
+        - `4_concurrent_traffic_simulation/src/TrafficLight.cpp`
