@@ -10,11 +10,12 @@ include_directories(include)
 # Find all executables
 file(GLOB project_SRCS 
     src/Layers.cpp
+    src/Datasets.cpp
     src/NeuralNetworks.cpp
     src/FeedForward.cpp
-    src/CNN.cpp
 ) #src/*.h
 
 # Add project executable
-add_executable(neural_network src/main.cpp ${project_SRCS})
+add_executable(mnist_nn src/mnist.cpp ${project_SRCS})
 add_executable(xor_nn src/xor.cpp ${project_SRCS})
+# add_executable(read_data src/read_data.cpp ${project_SRCS})

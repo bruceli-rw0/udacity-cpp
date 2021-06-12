@@ -3,25 +3,28 @@
 
 #include "NeuralNetworks.h"
 
-class TwoLayerNet : public NeuralNetworks
+class TwoLayerNNClassifier : public NeuralNetworks<Matrix>
 {
 public:
-    TwoLayerNet(int inputDim, int hiddenDim, int numClass, double learningRate=0.01);
-    virtual Matrix forward(Matrix x) override;
-    virtual void backward(Matrix dout) override;
+    TwoLayerNNClassifier(int inputDim, vector<int> hiddenDim, int numClass, double learningRate=0.01);
+    Matrix forward(Matrix x) override;
+    void backward(Matrix dout) override;
 
 private:
     vector<Linear> layers;
     ReLU relu;
 };
 
+class ThreeLayerNNClassifier : public NeuralNetworks<Matrix>
+{
+public:
+    ThreeLayerNNClassifier(int inputDim, vector<int> hiddenDim, int numClass, double learningRate=0.01);
+    Matrix forward(Matrix x) override;
+    void backward(Matrix dout) override;
 
-// class FeedForward : public NeuralNetworks
-// {
-// public:
-//     FeedForward();
-//     void forward();
-//     void backward();
-// };
+private:
+    vector<Linear> layers;
+    vector<ReLU> relu;
+};
 
 #endif

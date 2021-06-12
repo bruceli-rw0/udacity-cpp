@@ -4,19 +4,18 @@
 #include <vector>
 #include <random>
 using std::vector;
-
-using KernelSize = std::tuple<int, int>;
-using Kernel = vector<vector<double>>;
 using Matrix = vector<vector<double>>;
 
+class Perceptron;
 class Linear;
+
+void printMatrix(Matrix &m);
 
 class Perceptron
 {
 public:
     Perceptron(int inFeatures);
     double forward(vector<double> x);
-    // int getSize() const { return weights.size(); }
     friend class Linear;
 
 protected:
@@ -37,6 +36,8 @@ public:
     Matrix backward(Matrix dout);
 
 private:
+    void printWeight();
+
     int _inFeatures;
     int _outFeatures;
     double _learningRate;
@@ -54,47 +55,19 @@ private:
     Matrix x;
 };
 
-// class Conv
-// {
-// public:
-//     Conv
-//     (
-//         int inChannels, 
-//         int outChannels, 
-//         KernelSize kernelSize, 
-//         int stride=1, 
-//         int padding=0, 
-//         bool useBias=true
-//     ) {}
-//     void forward();
-//     void backward();
+class SoftmaxLoss
+{
+public:
+    double forward(Matrix _logits, vector<int> y);
+    Matrix backward(vector<int> y);
+    void printProbs();
 
-// private:
-//     int inChannels;
-//     int outChannels;
-//     KernelSize kernelSize;
-//     int stride;
-//     int padding;
-//     bool useBias;
-//     vector<vector<Kernel>> weights;
-//     vector<vector<double>> bias;
-// };
-
-// class ReLU3d
-// {
-// public:
-//     void forward(vector<vector<vector<double>>> tensor);
-//     void backward();
-// };
-
-// class MaxPool
-// {
-// public:
-//     vector<vector<vector<double>>> forward(vector<vector<vector<double>>>);
-//     void backward();
-
-// private:
-//     KernelSize kernelSize;
-// };
+private:
+    Matrix logits;
+    Matrix shiftlogits;
+    Matrix expshiftlogits;
+    Matrix logprobs;
+    Matrix probs;
+};
 
 #endif
